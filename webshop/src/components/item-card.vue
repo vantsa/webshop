@@ -8,22 +8,22 @@
     rounded-xl
     >
        <img 
-       :src='item.kep'>
-       <p>{{item.title}}</p>
+       :src="getBaseUrlForPics(item.kep_url)">
+       <p>{{item.name}}</p>
       <div class="cardfooter">
-       <h2>{{item.price}}</h2>
+       <h2>{{item.ar}}</h2>
        <v-btn @click = "itemDialog = !itemDialog"
        ><v-icon>mdi-cart</v-icon></v-btn>
       </div>
     </v-card>
     <v-dialog v-model="itemDialog">
-  <item-details :item="{
-        title: 'Pringles Kürtöskalács',
-        kep: 'https://picsum.photos/500/600',
-        price: '12.99 RON',
-        available: true
-      }"></item-details>
-  </v-dialog>
+        <item-details :item="{
+              title: 'Pringles Kürtöskalács',
+              kep: 'https://picsum.photos/500/600',
+              price: '12.99 RON',
+              available: true
+            }"></item-details>
+    </v-dialog>
   </div>
 </template>
 
@@ -48,9 +48,12 @@ export default {
   methods: {
     addToCart() {
           this.cart.push(this.item);
-          //console.log(cart.length);
+    },
+    getBaseUrlForPics(picName) {
+      let result =`http://localhost/webprogProjektApi/images/${picName}`;
+      return result
     }
-  }
+  },
 }
 </script>
 

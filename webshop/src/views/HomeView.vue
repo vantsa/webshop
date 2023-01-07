@@ -1,40 +1,34 @@
 <template>
 <div class="main">
-  <item-card :item="{
-        title: 'Pringles Kürtöskalács',
-        kep: 'https://picsum.photos/200/220',
-        price: '12.99 RON'
-      }"></item-card>
-      <item-card 
-      :item="{
-        title: 'Pringles Mézeskalács',
-        kep: 'https://picsum.photos/200/220',
-        price: '12.99 RON'
-      }"></item-card>
-      <item-card :item="{
-        title: 'Pringles Töltöttkáposzta',
-        kep: 'https://picsum.photos/200/220',
-        price: '12.99 RON'
-      }"></item-card>
-  <cart-final />
+
+  <item-card
+    v-for="item in products"
+    :key="item.id"
+    :item="item"
+  ></item-card>
   </div>
 </template>
 
 <script>
-  import cartFinal from '../components/cart-final'
   import itemCard from '../components/item-card'
+  // eslint-disable-next-line no-unused-vars
+  import axios from 'axios'
 
 
   export default {
     name: 'HomeView',
-
     components: {
-      cartFinal,
       itemCard,
     },
     data: () => ({
-    
+      products: [],
   }),
+
+  async mounted() {
+    this.products = (await axios.get('http://localhost/webprogProjektApi/termekek')).data
+    console.log(this.products)
+  }
+
   }
 </script>
 
