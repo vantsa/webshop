@@ -53,14 +53,13 @@ export default {
 <style scoped>
 
 .cartdetails{
-  border: 1px solid grey;
+  border-top: 1px solid grey;
   display: flex;
   margin: 0 auto;
   flex-direction: row;
   justify-content: space-between;
   width: 100%;
   margin-bottom: 2rem;
-  border-radius: 5px;
 }
 .bal h2{
   display: flex;

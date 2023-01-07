@@ -2,7 +2,7 @@
 <v-card>
   <v-form
   v-model="valid">
-  <h1>Regisztráció</h1>
+  <h1>Bejelentkezés</h1>
     <v-container>
       <v-row
       align="center"
@@ -37,27 +37,12 @@
       <v-row
       align="center"
       justify="center">
-        <v-col
-          cols="auto"
-          md="5" 
-        >
-          <v-text-field
-            v-model="passwordcnfrm"
-            :rules="passwordcnfrmRules"
-            label="Jelszó megerősitése"
-            required
-          ></v-text-field>
-        </v-col>
-      </v-row>
-      <v-row
-      align="center"
-      justify="center">
           <v-btn
           x-large
           color="red"
           rounded
           elevation="2"
-          class="mb-5">Regisztráció</v-btn>
+          class="mb-5">Bejelentkezés</v-btn>
       </v-row>
     </v-container>
   </v-form>
@@ -79,10 +64,6 @@
         v => !!v || 'Kötelező jelszó',
         v => v.length > 5 || "Legalább 6 karakterből kell állnia"
       ],
-      passwordcnfrm: '',
-      passwordcnfrmRules: [
-            v => v.password=v || "Megkell egyeznie a két jelszónak"
-      ]
     }),
   }
 </script>

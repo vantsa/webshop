@@ -6,13 +6,13 @@
           <div style="background: #fefefe; border-radius: 50%; width: 50px; height: 50px"></div>
         </div>
         <div class="signin">
-          <v-btn 
+          <v-btn @click="registerDialog = !registerDialog"
               elevation="2"
               rounded
           >Sign In</v-btn>
           </div>
         <div class="login">
-          <v-btn
+          <v-btn @click="loginDialog = !loginDialog"
               elevation="2"
               rounded
           >Log In</v-btn>
@@ -50,21 +50,37 @@
     >
       <span class="footer">&copy; {{ new Date().getFullYear() }} Fnacy design studio, eh?</span>
     </v-footer>
+  <v-dialog v-model= "registerDialog"
+    max-width="40%">
+    <user-register />
+  </v-dialog>
+  <v-dialog v-model= "loginDialog"
+    max-width="40%">
+    <user-login />
+  </v-dialog>
   </v-app>
+  
     
 
     
 </template>
 
 <script>
+import userRegister from "./components/user-register.vue"
+import userLogin from "./components/user-login.vue"
 
-export default {
+
+export default
+{
+components: { userRegister, userLogin },
   name: 'App',
 
   data: () => ({
-    //
+    registerDialog: false,
+    loginDialog: false,
   }),
-};
+}
+  
 </script>
 
 
@@ -95,7 +111,7 @@ ul li{
   position: relative;
 }
 .signin {
-  margin-left: 2em;
+  margin-right: 2em;
   display: block;
 }
 .searchFieldContainer {

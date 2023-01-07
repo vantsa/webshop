@@ -7,18 +7,31 @@
     class="ma-4 pa-4"
     rounded-xl
     >
-       <img :src='item.kep'>
+       <img 
+       :src='item.kep'>
        <p>{{item.title}}</p>
       <div class="cardfooter">
        <h2>{{item.price}}</h2>
-       <v-btn @click="addToCart"><v-icon>mdi-cart</v-icon></v-btn>
+       <v-btn @click = "itemDialog = !itemDialog"
+       ><v-icon>mdi-cart</v-icon></v-btn>
       </div>
     </v-card>
+    <v-dialog v-model="itemDialog">
+  <item-details :item="{
+        title: 'Pringles Kürtöskalács',
+        kep: 'https://picsum.photos/500/600',
+        price: '12.99 RON',
+        available: true
+      }"></item-details>
+  </v-dialog>
   </div>
 </template>
 
 <script>
+  import itemDetails from '../components/item-details'
+
 export default {
+  components: { itemDetails},
   name: "item-card",
   props: {
     item: {
@@ -28,7 +41,8 @@ export default {
   },
   data(){
     return{
-      cart: []
+      cart: [],
+      itemDialog: false,
     }
   },
   methods: {
@@ -51,10 +65,6 @@ img{
 }
 img:hover{
   transform: scale(1.05);
-}
-.rating{
-  margin-bottom: 5%;
-  margin-top: 5%;
 }
 .cardfooter{
   display: flex;

@@ -1,4 +1,5 @@
 <template>
+<v-card>
   <div class="details">
   <h1 class="pa-10">{{item.title}}</h1>
     <div class="detailscontainer">
@@ -24,6 +25,7 @@
     </div>
     </div>
   </div>
+</v-card>
 </template>
 
 <script>
@@ -69,8 +71,7 @@ p{
   display: inline-block;
 }
 .details{
-  width: 80%;
-  margin:0 auto;
+  margin-left: 2em;
 }
 .detailscontainer{
   margin: 0 auto;
@@ -78,31 +79,27 @@ p{
   justify-content: start;
   flex-direction: row;
 }
-.productphoto{
-  width: 40%;
-}
+
 .prod-details > * {
   margin-top: 2rem;
-  margin-left: 2rem;
+  margin-left: 5rem;
 }
 .prod-qnt {
   display: flex;
 }
-p .input {
-  border: 0;
-  border-top: 2px solid #ddd;
-  border-bottom: 2px solid #ddd;
+p{
   width: 2.5rem;
   text-align: center;
-  padding: 0 .5rem;
 }
-
+.input{
+    border-top: 2px solid #ddd;
+  border-bottom: 2px solid #ddd;
+}
 .qnt{
   border: 2px solid #ddd;
-  padding: .5rem;
   background: #f5f5f5;
   color: #888;
-  font-size: 1rem;
+  font-size: 0.2rem;
   cursor: pointer;
 }
 </style>
