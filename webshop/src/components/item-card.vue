@@ -4,25 +4,22 @@
     width="250"
     height="400"
     dark
-    class="ma-4 pa-4"
+    class="ma-4 pa-3"
     rounded-xl
     >
        <img 
        :src="getBaseUrlForPics(item.kep_url)">
        <p>{{item.name}}</p>
       <div class="cardfooter">
-       <h2>{{item.ar}}</h2>
-       <v-btn @click = "itemDialog = !itemDialog"
+       <h2>{{item.ar}} RON</h2>
+       <v-btn @click = getItemID(item)
        ><v-icon>mdi-cart</v-icon></v-btn>
       </div>
     </v-card>
-    <v-dialog v-model="itemDialog">
-        <item-details :item="{
-              title: 'Pringles Kürtöskalács',
-              kep: 'https://picsum.photos/500/600',
-              price: '12.99 RON',
-              available: true
-            }"></item-details>
+    <v-dialog
+     fullscreen
+     v-model="itemDialog">
+        <item-details :id="currentViewedItem"></item-details>
     </v-dialog>
   </div>
 </template>
@@ -43,6 +40,7 @@ export default {
     return{
       cart: [],
       itemDialog: false,
+      currentViewedItem: 0
     }
   },
   methods: {
@@ -52,6 +50,10 @@ export default {
     getBaseUrlForPics(picName) {
       let result =`http://localhost/webprogProjektApi/images/${picName}`;
       return result
+    },
+    getItemID(item){
+          this.currentViewedItem = item.id;
+          this.itemDialog = !this.itemDialog
     }
   },
 }
@@ -63,11 +65,16 @@ export default {
   display: inline-block;
 }
 img{
-  width: 100%;
+  max-height: 200px;
+  display:block;
   transition: transform .4s;
+  margin: 0 auto;
 }
 img:hover{
   transform: scale(1.05);
+}
+p{
+  margin: 0.8em;
 }
 .cardfooter{
   display: flex;

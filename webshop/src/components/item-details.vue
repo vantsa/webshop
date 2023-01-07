@@ -1,19 +1,18 @@
 <template>
 <v-card>
+  <v-row align="center" justify="center">
   <div class="details">
-  <h1 class="pa-10">{{item.title}}</h1>
+  <h1 class="pa-10">{{item.name}}</h1>
     <div class="detailscontainer">
       <div class="productphoto">
-        <img :src='item.kep'>
+        <img :src="getBaseUrlForPics(item.kep_url)">
       </div>
     <div class="prod-details">
-      <h2>{{item.price}}</h2>
-        <div v-if="item.available === true">
-          <v-icon style="color:green">mdi-brightness-1</v-icon>
+      <h2>{{item.ar}} RON</h2>
+        <div v-if="item.darab_szam > 0">
           <p style="color:green">Elérhető</p>
         </div>
         <div v-else>
-          <v-icon style="color:red">mdi-brightness-1</v-icon>
           <p style="color:red">Elfogyott</p>
         </div>
           <v-btn class="mb-3">Kosarhoz adas</v-btn>
@@ -25,26 +24,28 @@
     </div>
     </div>
   </div>
+  </v-row>
 </v-card>
 </template>
 
 <script>
+  import axios from 'axios'
+
 export default {
   name: "item-details",
   props: {
-    item: {
-      type: Object,
+    id: {
       required : true
     }
   },
   data () {
     return {
-      quantity: 1
+      quantity: 1,
+      item: null
     }
   },
   methods: {
     increment() {
-      console.log("szia");
       this.quantity++
       console.log(this.quantity)
     },
@@ -54,7 +55,15 @@ export default {
       } else {
         this.quantity--
       }
+    },
+    getBaseUrlForPics(picName) {
+      let result =`http://localhost/webprogProjektApi/images/${picName}`;
+      return result
     }
+  },
+    async mounted() {
+    this.item = (await axios.get(`http://localhost/webprogProjektApi/termekek/${this.id}`)).data
+    console.log(this.products)
   }
 }
 </script>
@@ -67,8 +76,9 @@ h2{
   font-size: 38px;
 }
 p{
-  font-size: 24px;
-  display: inline-block;
+  font-size: 1.5em;
+  font-weight: bold;
+
 }
 .details{
   margin-left: 2em;
@@ -87,13 +97,12 @@ p{
 .prod-qnt {
   display: flex;
 }
-p{
-  width: 2.5rem;
-  text-align: center;
-}
 .input{
     border-top: 2px solid #ddd;
   border-bottom: 2px solid #ddd;
+}
+img{
+  max-height: 400px;  
 }
 .qnt{
   border: 2px solid #ddd;
