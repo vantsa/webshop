@@ -11,7 +11,14 @@ export default new Vuex.Store({
   },
   mutations: {
     addToCartItems(state, newCartItems) {
-      newCartItems.forEach(i=>state.cartItems.push(i))
+      newCartItems.forEach(i=>{
+        if(!state.cartItems.some(item=>item.item.id === i.item.id)) {
+          state.cartItems.push(i)
+        }
+        else {
+          state.cartItems.find(item=>item.item.id === i.item.id).quantity += i.quantity
+        }
+      })
       let cartItemsStringified = JSON.stringify(state.cartItems)
       localStorage.setItem('cartItems', cartItemsStringified)
     },

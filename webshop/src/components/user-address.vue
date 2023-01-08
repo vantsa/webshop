@@ -72,7 +72,10 @@
           rounded
           elevation="2"
           class="mb-5"
-           href="https://www.youtube.com/watch?v=dQw4w9WgXcQ">Fizetés</v-btn>
+          @click="preapareItemsForOrder"
+          >
+            Fizetés
+          </v-btn>
       </v-row>
     </v-container>
   </v-form>
@@ -80,6 +83,8 @@
 </template>
 
 <script>
+import axios from 'axios';
+
   export default {
     name: 'user-address',
     data: () => ({
@@ -106,6 +111,21 @@
         v => /^\d+$/.test(v) || "Csak számokat tartalmazhat"
       ],
     }),
+    methods: {
+      async preapareItemsForOrder() {
+        let orders = JSON.parse(localStorage.getItem('cartItems'))
+        console.log(orders)
+        let preaparedOrders = []
+        orders.forEach(order=>{
+          preaparedOrders.push({
+            itemId: order.item.id,
+            quantity: order.quantity
+          })
+        })
+        console.log(preaparedOrders)
+        await axios.post('http://localhost/webprogProjektApi/rendeles', preaparedOrders)
+      }
+    }
   }
 </script>
 
