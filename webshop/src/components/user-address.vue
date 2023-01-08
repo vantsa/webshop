@@ -122,8 +122,15 @@ import axios from 'axios';
             quantity: order.quantity
           })
         })
-        console.log(preaparedOrders)
-        await axios.post('http://localhost/webprogProjektApi/rendeles', preaparedOrders)
+        var prepareShipping ={
+          name: this.name,
+          address: this.address, 
+          email: this.email,
+          phoneNumber: this.phoneNumber,
+          items: [preaparedOrders]
+        }
+        console.log(prepareShipping)
+        await axios.post('http://localhost/webprogProjektApi/rendeles', prepareShipping)
       }
     }
   }
