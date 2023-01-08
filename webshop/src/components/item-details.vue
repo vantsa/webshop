@@ -1,5 +1,19 @@
 <template>
 <v-card>
+  <v-toolbar
+      dark
+      color="primary"
+  >
+    <v-btn
+        icon
+        dark
+        @click="$emit('close')"
+    >
+      <v-icon>mdi-close</v-icon>
+    </v-btn>
+    <v-toolbar-title>{{ item.name }}</v-toolbar-title>
+    <v-spacer></v-spacer>
+  </v-toolbar>
   <v-row align="center" justify="center">
   <div class="details">
   <h1 class="pa-10">{{item.name}}</h1>
@@ -15,7 +29,7 @@
         <div v-else>
           <p style="color:red">Elfogyott</p>
         </div>
-          <v-btn class="mb-3">Kosarhoz adas</v-btn>
+          <v-btn @click="addItemToCart" class="mb-3">Kosarhoz adas</v-btn>
         <div class="prod-qnt">
           <v-btn class="qnt" @click="decrement"><v-icon>mdi-chevron-down</v-icon></v-btn>
           <p class="input"> {{quantity}} </p>
@@ -47,23 +61,24 @@ export default {
   methods: {
     increment() {
       this.quantity++
-      console.log(this.quantity)
     },
     decrement() {
-      if (this.quantity === 1) {
-        alert('Negativ mennyiség nem megfelelő')
-      } else {
-        this.quantity--
-      }
+     if(this.quantity > 1) {
+       this.quantity--
+     }
     },
     getBaseUrlForPics(picName) {
       let result =`http://localhost/webprogProjektApi/images/${picName}`;
       return result
+    },
+    addItemToCart() {
+      let newCartItems = []
+      newCartItems.push({item: this.item, quantity: this.quantity})
+      this.$store.dispatch('addToCartItems', newCartItems)
     }
   },
     async mounted() {
     this.item = (await axios.get(`http://localhost/webprogProjektApi/termekek/${this.id}`)).data
-    console.log(this.products)
   }
 }
 </script>

@@ -1,22 +1,13 @@
 <template>
     <div class="cartres">
-          <div class="items">
-            <cart-item :item="{
-      title: 'Pringles',
-      kep: 'https://picsum.photos/250/150',
-      price: '12.99 RON',
-      }"></cart-item>
-            <cart-item :item="{
-      title: 'Pringles',
-      kep: 'https://picsum.photos/250/150',
-      price: '12.99 RON',
-      }"></cart-item>
-          </div>
+      <div class="d-flex justify-center flex-column">
+        <cart-item @itemRemoved="removeItems" v-for="item in cartItems" :key="item.item.id" :item="item"></cart-item>
+      </div>
           <div class="receipt">
               <h1>Számla</h1>
-              <h2>Összesen fizetendő:   Papito</h2>
-              <h2>Szállitás: 19,99 Lei</h2>
-              <h1>Összesen: Ingyen van vigyetek</h1>
+              <h2>Kosár: {{ getCartValue() }} RON</h2>
+              <h2>Szállitás: 19,99 RON</h2>
+              <h1>Összesen: {{Math.round((getCartValue() + 19.99)*100)/100}} RON</h1>
               <v-btn @click="adatokKitolt=!adatokKitolt"
               elevation="2"
               rounded
@@ -30,7 +21,7 @@
           <user-address />
         </v-dialog>
     </div>
-    
+
 </template>
 
 <script>
@@ -53,12 +44,28 @@ export default {
     return {
       total: 0,
       totalsum: 19.99,
-      adatokKitolt: false
+      adatokKitolt: false,
+      cartItems: []
     }
+  },
+  mounted() {
+    this.cartItems = this.getSavedCartItems
   },
   methods: {
     getCartValue() {
-        
+      let sum = 0;
+      this.cartItems.forEach(i=>{
+        sum += Number.parseFloat(i.item.ar) * Number.parseFloat(i.quantity)
+      })
+      return sum;
+    },
+    removeItems(item) {
+      this.cartItems = this.cartItems.filter(i=>i.item.id !== item.item.id)
+    }
+  },
+  computed: {
+    getSavedCartItems() {
+      return JSON.parse(localStorage.getItem('cartItems'))
     }
   }
 }
@@ -81,5 +88,11 @@ export default {
 h1{
   margin-top: 1em;
   margin-bottom: 1em;
+}
+
+.receipt {
+  position: fixed;
+  top: 95px;
+  right: 30px;
 }
 </style>

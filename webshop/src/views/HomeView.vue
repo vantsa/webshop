@@ -1,6 +1,5 @@
 <template>
 <div class="main">
-
   <item-card
     v-for="item in products"
     :key="item.id"
@@ -26,7 +25,6 @@
 
   async mounted() {
     this.products = (await axios.get('http://localhost/webprogProjektApi/termekek')).data
-    console.log(this.products)
   }
 
   }
@@ -36,5 +34,8 @@
 .main{
   width: 70%;
   margin: 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
 }
 </style>

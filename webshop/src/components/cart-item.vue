@@ -1,17 +1,17 @@
 <template>
   <div class="cartdetails">
        <div class="bal">
-         <img :src="item.kep">
-         <h2> {{item.title}}</h2>
+         <img style="max-height: 200px;" :src="getBaseUrlForPics(item.item.kep_url)">
+         <h2> {{item.item.name}}</h2>
        </div>
       <div class="jobb">
-        <h3> {{item.price}}</h3>
+        <h3> {{item.ar}}</h3>
         <div class="prod-qnt">
           <v-btn class="qnt" @click="decrement"><v-icon>mdi-chevron-down</v-icon></v-btn>
-          <p class="input"> {{quantity}} </p>
+          <p class="input"> {{item.quantity}} </p>
           <v-btn class="qnt" @click="increment"><v-icon>mdi-chevron-up</v-icon></v-btn>
         </div>
-        <v-btn class="delete">Delete<v-icon>mdi-delete</v-icon></v-btn>
+        <v-btn @click="deleteItemFromCart(item)" class="delete">Delete<v-icon>mdi-delete</v-icon></v-btn>
       </div>
 
   </div>
@@ -43,9 +43,14 @@ export default {
         this.quantity--
       }
     },
-      getItemPrice() {
-        ///total += this.item.price * this.item.quantity
-      }   
+    getBaseUrlForPics(picName) {
+      let result =`http://localhost/webprogProjektApi/images/${picName}`;
+      return result
+    },
+    deleteItemFromCart(item) {
+      this.$store.dispatch('removeItemFromCart',item)
+      this.$emit('itemRemoved',item)
+    }
   }
 }
 </script>

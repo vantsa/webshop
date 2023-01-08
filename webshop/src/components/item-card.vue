@@ -18,8 +18,10 @@
     </v-card>
     <v-dialog
      fullscreen
+     hide-overlay
+     transition="dialog-bottom-transition"
      v-model="itemDialog">
-        <item-details :id="currentViewedItem"></item-details>
+        <item-details @close="itemDialog=false" :id="currentViewedItem"></item-details>
     </v-dialog>
   </div>
 </template>

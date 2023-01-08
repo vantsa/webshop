@@ -17,7 +17,7 @@
               rounded
           >Log In</v-btn>
           </div>
-        <!-- <div class="searchFieldContainer">
+         <div class="searchFieldContainer">
           <div style="max-width: 300px; position: relative; top: 12px;">
             <v-text-field
             height="30"
@@ -28,23 +28,23 @@
             background-color="white"
             ></v-text-field>
           </div>
-          <v-icon class="menu-button" color="white" x-large>mdi-cart</v-icon>
-        </div> -->
+          <v-icon @click="$router.push('/cart')" class="menu-button" color="white" x-large>mdi-cart</v-icon>
+        </div>
       </div>
       
     </div>
     <div class="menubar">
             <ul>
-              <li>Csokoládék</li>
-              <li>Üditők</li>
-              <li>Chipsek</li>
+              <li style="cursor: pointer" @click="$router.push('/')">Minden</li>
+              <li style="cursor: pointer" @click="$router.push('/')">Csokoládék</li>
+              <li style="cursor: pointer" @click="$router.push('/')">Udito</li>
+              <li style="cursor: pointer" @click="$router.push('/')">Chipsek</li>
             </ul>
       </div>
       <v-main>
       <router-view/>
     </v-main>
     <v-footer 
-      :absolute="!fixed"
       app
       dark
     >

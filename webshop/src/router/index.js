@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import HomeView from '../views/HomeView.vue'
+import CartView from "@/views/CartView";
 
 Vue.use(VueRouter)
 
@@ -10,6 +11,11 @@ const routes = [
     name: 'home',
     component: HomeView
   },
+  {
+    path: '/cart',
+    name: 'cart',
+    component: CartView
+  }
 ]
 
 const router = new VueRouter({
