@@ -122,12 +122,12 @@ import axios from 'axios';
             quantity: order.quantity
           })
         })
-        var prepareShipping ={
+        let prepareShipping = {
           name: this.name,
           address: this.address, 
           email: this.email,
           phoneNumber: this.phoneNumber,
-          items: [preaparedOrders]
+          items: preaparedOrders,
         }
         console.log(prepareShipping)
         await axios.post('http://localhost/webprogProjektApi/rendeles', prepareShipping)
