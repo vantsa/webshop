@@ -92,7 +92,7 @@
       address: '',
       addrRules: [
         v => !!v || "Kötelező kitölteni",
-        v => v.length >= 10 || 'A cim hossza legalább 5 karakter!',
+        v => v.length >= 10 || 'A cim hossza legalább 10 karakter!',
       ],
       email: '',
       emailRules: [

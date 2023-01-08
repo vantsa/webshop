@@ -2,7 +2,7 @@
   <div class="cartdetails">
        <div class="bal">
          <img style="max-height: 200px;" :src="getBaseUrlForPics(item.item.kep_url)">
-         <h2> {{item.item.name}}</h2>
+         <h2> {{item.item.name}}<br> {{item.item.ar}} RON/db</h2>
        </div>
       <div class="jobb">
         <h3> {{item.ar}}</h3>
@@ -65,6 +65,10 @@ export default {
   justify-content: space-between;
   width: 100%;
   margin-bottom: 2rem;
+}
+h3 .armutat{
+  display: flex;
+
 }
 .bal h2{
   display: flex;

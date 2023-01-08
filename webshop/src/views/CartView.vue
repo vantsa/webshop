@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="main">
     <cart-final></cart-final>
   </div>
 </template>
@@ -17,5 +17,8 @@ export default {
 </script>
 
 <style scoped>
-
+.main{
+  margin: 0 auto;
+  width: 80%;
+}
 </style>

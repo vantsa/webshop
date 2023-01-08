@@ -89,10 +89,7 @@ h1{
   margin-top: 1em;
   margin-bottom: 1em;
 }
-
-.receipt {
-  position: fixed;
-  top: 95px;
-  right: 30px;
+.receipt{
+  margin-left: 10em;
 }
 </style>
