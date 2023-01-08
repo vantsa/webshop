@@ -5,7 +5,7 @@
         <div class="logo-div">
           <div style="background: #fefefe; border-radius: 50%; width: 50px; height: 50px"></div>
         </div>
-        <div class="signin">
+        <!-- <div class="signin">
           <v-btn @click="registerDialog = !registerDialog"
               elevation="2"
               rounded
@@ -16,7 +16,7 @@
               elevation="2"
               rounded
           >Log In</v-btn>
-          </div>
+          </div> -->
          <div class="searchFieldContainer">
           <div style="max-width: 300px; position: relative; top: 12px;">
             <v-text-field
@@ -36,9 +36,9 @@
     <div class="menubar">
             <ul>
               <li style="cursor: pointer" @click="$router.push('/')">Minden</li>
-              <li style="cursor: pointer" @click="$router.push('/')">Csokoládék</li>
-              <li style="cursor: pointer" @click="$router.push('/')">Udito</li>
-              <li style="cursor: pointer" @click="$router.push('/')">Chipsek</li>
+              <li style="cursor: pointer" @click="$router.push('/csokoladek')">Csokoládék</li>
+              <li style="cursor: pointer" @click="$router.push('/uditoitalok')">Udito</li>
+              <li style="cursor: pointer" @click="$router.push('/ropogtatnivalok')">Chipsek</li>
             </ul>
       </div>
       <v-main>
