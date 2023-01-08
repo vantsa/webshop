@@ -3,7 +3,7 @@
      <div class="header-container">
       <div class="header">
         <div class="logo-div">
-          <div style="background: #fefefe; border-radius: 50%; width: 50px; height: 50px"></div>
+          <h1>eMag2</h1>
         </div>
         <!-- <div class="signin">
           <v-btn @click="registerDialog = !registerDialog"
@@ -88,13 +88,16 @@ components: { userRegister, userLogin },
 .footer{
   margin: 0 auto;
 }
+h1{
+  color:white;
+}
 .menubar{
   width: 100%;
   height: 40px;
   display: flex;
   align-items: center;
   justify-content: center;
-  background: #696969;
+  background: #1e1e1e;
   border-top: 1px solid black;
 }
 ul li{
@@ -132,7 +135,7 @@ ul li{
   display: flex;
   align-items: center;
   justify-content: center;
-  background: #696969;
+  background: #1e1e1e;
 }
 
 .menu-button {

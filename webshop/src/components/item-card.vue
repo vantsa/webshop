@@ -3,7 +3,7 @@
     <v-card
     width="250"
     height="400"
-    dark
+    color="white"
     class="ma-4 pa-3"
     rounded-xl
     >
