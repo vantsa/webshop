@@ -18,16 +18,16 @@
           >Log In</v-btn>
           </div> -->
          <div class="searchFieldContainer">
-          <div style="max-width: 300px; position: relative; top: 12px;">
-            <v-text-field
-            height="30"
-            placeholder="Keresés.."
-            solo
-            dense
-            rounded
-            background-color="white"
-            ></v-text-field>
-          </div>
+<!--          <div style="max-width: 300px; position: relative; top: 12px;">-->
+<!--            <v-text-field-->
+<!--            height="30"-->
+<!--            placeholder="Keresés.."-->
+<!--            solo-->
+<!--            dense-->
+<!--            rounded-->
+<!--            background-color="white"-->
+<!--            ></v-text-field>-->
+<!--          </div>-->
           <v-icon @click="$router.push('/cart')" class="menu-button" color="white" x-large>mdi-cart</v-icon>
         </div>
       </div>

@@ -18,12 +18,19 @@ require __DIR__ . "/src/Repositories/RendelesGateway.php";
 set_exception_handler("\\ErrorHandler::handleException");
 
 
-
 header('Access-Control-Allow-Origin: *');
-header('Access-Control-Allow-Methods: GET, POST');
+header('Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS');
 header("Access-Control-Allow-Headers: X-Requested-With");
 header("Content-type: application/json; charset=UTF-8");
 
+
+if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
+    header("Access-Control-Allow-Origin: *");
+    header("Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS");
+    header("Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept, Authorization");
+    http_response_code(200);
+    exit;
+}
 
 
 $parts = explode("/",$_SERVER["REQUEST_URI"]);
